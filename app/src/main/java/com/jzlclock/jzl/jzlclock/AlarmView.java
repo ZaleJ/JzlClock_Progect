@@ -1,9 +1,12 @@
 package com.jzlclock.jzl.jzlclock;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.View;
@@ -23,14 +26,21 @@ public class AlarmView extends LinearLayout{
 
     public AlarmView(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs, defStyle);
+        // init();
     }
 
     public AlarmView(Context context, AttributeSet attrs){
         super(context, attrs);
+        init();
     }
 
     public AlarmView(Context context){
         super(context);
+        init();
+    }
+
+    private void init(){
+        alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
     }
 
     @Override
@@ -91,6 +101,7 @@ public class AlarmView extends LinearLayout{
                 }
 
                 adapter.add(new AlarmData(calendar.getTimeInMillis()));
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 5*60*1000, PendingIntent.getBroadcast(getContext(), 0, new Intent(getContext(), AlarmReceiver.class ), 0));
                 saveAlarmList();     // 保存新建闹钟数据
             }
         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
@@ -128,6 +139,7 @@ public class AlarmView extends LinearLayout{
     private ListView lvAlarmList;
     private static final String KEY_ALARM_LIST = "alarmList";
     private ArrayAdapter<AlarmData> adapter;
+    private AlarmManager alarmManager;
 
     private static class AlarmData{
         public AlarmData(long time){
