@@ -94,6 +94,8 @@ public class AlarmView extends LinearLayout{
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
 
                 Calendar currentTime = Calendar.getInstance();
                 if (calendar.getTimeInMillis() <= currentTime.getTimeInMillis()) {
@@ -114,11 +116,15 @@ public class AlarmView extends LinearLayout{
             sb.append(adapter.getItem(i).getTime()).append(","); //传入数据、时间， 多个中间用逗号隔开
         }
 
-        String content = sb.toString().substring(0, sb.length()-1);
+        if (sb.length()>1) {
+            String content = sb.toString().substring(0, sb.length()-1);
 
-        editor.putString(KEY_ALARM_LIST, content);     // 输出除最后一个类型数据
+            editor.putString(KEY_ALARM_LIST, content);     // 输出除最后一个类型数据
 
-        System.out.println(content);
+            System.out.println(content);
+        } else {
+            editor.putString(KEY_ALARM_LIST, null);
+        }
 
         editor.commit();  // 提交数据
     }
