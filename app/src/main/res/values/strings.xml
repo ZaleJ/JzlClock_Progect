@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">JzlClock</string>
     <string name="add_alarm">新建闹钟</string>
+    <string name="play_sound">Play Sound</string>
 </resources>

@@ -20,6 +20,7 @@
                 <action android:name="com.jzlclock.intent"/>
             </intent-filter>
         </receiver>
+        <activity android:name=".PlayAlarmAty" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
