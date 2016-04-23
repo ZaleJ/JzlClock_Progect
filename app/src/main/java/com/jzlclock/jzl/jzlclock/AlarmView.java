@@ -75,7 +75,7 @@ public class AlarmView extends LinearLayout{
                                 break;
                         }
                     }
-                }).setNegativeButton("取消", null).show();
+                }).setNegativeButton("取消", null).show();//
                 return true;
             }
         });
