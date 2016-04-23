@@ -82,8 +82,11 @@ public class AlarmView extends LinearLayout{
     }
 
     private void deleteAlarm(int position){
-        adapter.remove(adapter.getItem(position));
+        AlarmData ad = adapter.getItem(position);
+        adapter.remove(ad);
         saveAlarmList();
+
+        alarmManager.cancel(PendingIntent.getBroadcast(getContext(), ad.getId(), new Intent(getContext(), AlarmReceiver.class), 0));
     }
 
     private void addAlarm(){
@@ -102,8 +105,12 @@ public class AlarmView extends LinearLayout{
                     calendar.setTimeInMillis(calendar.getTimeInMillis()+24*60*60*1000);
                 }
 
-                adapter.add(new AlarmData(calendar.getTimeInMillis()));
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 5*60*1000, PendingIntent.getBroadcast(getContext(), 0, new Intent(getContext(), AlarmReceiver.class ), 0));
+                AlarmData ad = new AlarmData(calendar.getTimeInMillis());
+                adapter.add(ad);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                        ad.getTime(),
+                        5*60*1000,
+                        PendingIntent.getBroadcast(getContext(), ad.getId(), new Intent(getContext(), AlarmReceiver.class ), 0));
                 saveAlarmList();     // 保存新建闹钟数据
             }
         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
@@ -171,6 +178,10 @@ public class AlarmView extends LinearLayout{
         @Override
         public String toString() {
             return getTimeLabel();
+        }
+
+        public int getId(){
+            return (int)(getTime()/1000/60);
         }
 
         private String timeLabel = "";
