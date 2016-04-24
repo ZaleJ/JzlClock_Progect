@@ -58,11 +58,87 @@
                         android:text="@string/add_alarm"/>
                 </com.jzlclock.jzl.jzlclock.AlarmView>
 
-                <LinearLayout
+                <com.jzlclock.jzl.jzlclock.TimerView
                     android:id="@+id/tabTimer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+                        <EditText
+                            android:id="@+id/etHour"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":"/>
+
+                        <EditText
+                            android:id="@+id/etMin"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":"/>
+
+                        <EditText
+                            android:id="@+id/etSec"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btnGroup"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btnStart"
+                            android:text="@string/start"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:id="@+id/btnPause"
+                            android:text="@string/pause"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:id="@+id/btnResume"
+                            android:text="@string/resume"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:id="@+id/btnReset"
+                            android:text="@string/reset"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                </com.jzlclock.jzl.jzlclock.TimerView>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"></LinearLayout>
                 <LinearLayout
                     android:id="@+id/tabStopWatch"
                     android:layout_width="match_parent"
