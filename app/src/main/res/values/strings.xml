@@ -4,7 +4,7 @@
     <string name="play_sound">Play Sound</string>
     <string name="start">Start</string>
     <string name="pause">Pause</string>
-    <string name="resume">Resume</string>
+    <string name="resume">Resum</string>
     <string name="reset">Reset</string>
     <string name="lap">Lap</string>
 </resources>
